@@ -1,13 +1,11 @@
-import {
-    HttpException,
-    Injectable,
-    HttpStatus,
-} from '@nestjs/common';
+import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Skill } from './skill.entity';
 import { Repository } from 'typeorm';
-import { CreateSkillDto } from './dto/create-skill.dto';
-import { UpdateSkillDto } from './dto/update-skill.dto';
+import { CreateSkillDto } from './dto/create-skill.dto.js';
+import { UpdateSkillDto } from './dto/update-skill.dto.js';
+
+
 @Injectable()
 export class SkillsService {
     constructor(
@@ -17,12 +15,12 @@ export class SkillsService {
     async createSkill(skill: CreateSkillDto) {
         const skillFound = await this.skillRepository.findOne({
             where: {
-                name: skill.name,
+                skill: skill.skill,
             },
         });
         if (!skillFound) {
             const newSkill = this.skillRepository.create({
-                name: skill.name,
+                skill: skill.skill,
             });
             await this.skillRepository.save(newSkill);
             return 'Skill creada exitosamente';

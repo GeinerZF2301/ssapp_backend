@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import { RegisterAuthDto } from 'src/auth/dto/register-auth.dto';
+import { LoginAuthDto } from '../auth/dto/login-auth.dto';
 
 @Injectable()
 export class UsersService {
@@ -61,9 +62,24 @@ export class UsersService {
     }
     return userFound;
   }
-  async getUserByEmail(email:string){
-    const userFound = await this.userRepository.findOneBy({email});
-    return userFound;
+  async checkUserCredentials(user: LoginAuthDto) {
+    const userFoundByEmail = await this.userRepository.findOne({ 
+      where: {
+        email: user.email
+      },
+    });
+    if (!userFoundByEmail) {
+      throw new HttpException("Correo electrónico incorrecto. Por favor, inténtalo de nuevo", HttpStatus.NOT_FOUND);
+    }
+    const isPasswordValid = await this.verifyPassword(user.password, userFoundByEmail.password);
+    if (!isPasswordValid) {
+      throw new HttpException("Contraseña incorrecta. Por favor, inténtalo de nuevo", HttpStatus.UNAUTHORIZED);
+    }
+    return { message: "Autenticación exitosa", status: HttpStatus.OK };
+  }
+  
+  async verifyPassword(plainPassword: string, hashedPassword: string): Promise<boolean> {
+    return bcrypt.compare(plainPassword, hashedPassword);
   }
   
   async deleteUser(id: number) {

@@ -1,23 +1,26 @@
 import { Transform } from 'class-transformer';
-import { IsEmail, IsString, MinLength, Validate} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MinLength, Validate} from 'class-validator';
 export class RegisterAuthDto {
 
-  @Transform(({ value }) => value.trim())
-  @IsString()
-  @MinLength(5)
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  @IsNotEmpty({message:"El nombre de usuario es obligatorio"})
+  @IsString({message: "El nombre de usuario debe ser escrito en formato de texto"})
+  @MinLength(5, {message: "El nombre de usuario no debe tener menos de 3 caracteres"})
+
   username: string;
 
-  @Transform(({ value }) => value.trim())
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  @IsNotEmpty({message:"El correo electrónico es obligatorio"})
   @IsEmail()
   email: string;
 
-  @Transform(({ value }) => value.trim())
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
-  @MinLength(8)
+  @MinLength(8,{message: "La contraseña no debe tener menos de 8 caracteres"})
   password: string;
   
-  @Transform(({ value }) => value.trim())
-  @MinLength(8)
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  @MinLength(8, {message: "La contraseña no debe tener menos de 8 caracteres"})
   @IsString()
   confirmPassword: string;
 
@@ -28,3 +31,5 @@ export class RegisterAuthDto {
   })
   confirmPasswordMatches: string;
 }
+
+

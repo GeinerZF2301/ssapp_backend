@@ -12,7 +12,7 @@ export class Skill {
   id: number;
 
   @Column({ unique: true })
-  name: string;
+  skill: string;
 
   @ManyToMany(() => User)
   @JoinTable()

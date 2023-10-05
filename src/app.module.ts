@@ -9,6 +9,8 @@ import { SkillsModule } from './skills/skills.module';
 import { AuthModule } from './auth/auth.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RecruitmentsModule } from './recruitments/recruitments.module';
+import { CategoryBusinessModule } from './category-business/category-business.module';
+import { ProfileBusinessModule } from './profile-business/profile-business.module';
 
 @Module({
   imports: [
@@ -32,6 +34,8 @@ import { RecruitmentsModule } from './recruitments/recruitments.module';
     AuthModule,
     ReviewsModule,
     RecruitmentsModule,
+    CategoryBusinessModule,
+    ProfileBusinessModule,
   ],
   controllers: [AppController],
   providers: [AppService],

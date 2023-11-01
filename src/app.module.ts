@@ -12,6 +12,7 @@ import { RecruitmentsModule } from './recruitments/recruitments.module';
 import { CategoryBusinessModule } from './category-business/category-business.module';
 import { ProfileBusinessModule } from './profile-business/profile-business.module';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -36,6 +37,7 @@ import { ProfileBusinessModule } from './profile-business/profile-business.modul
     RecruitmentsModule,
     CategoryBusinessModule,
     ProfileBusinessModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],

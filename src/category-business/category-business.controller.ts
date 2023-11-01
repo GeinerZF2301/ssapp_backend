@@ -2,6 +2,10 @@ import { Controller, Post, Body, Get, Param, Delete, Patch } from '@nestjs/commo
 import { CategoryBusinessService } from './category-business.service';
 import { CreateCategoryBusinessDto } from './dto/create-category-business.dto.js';
 import { UpdateCategoryBusinessDto } from './dto/update-category-business.dto.js';
+import { ApiTags } from '@nestjs/swagger';
+
+
+@ApiTags('category-business')
 
 @Controller('category-business')
 export class CategoryBusinessController {

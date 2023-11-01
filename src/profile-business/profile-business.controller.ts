@@ -2,7 +2,10 @@ import { Controller, Post, Body, Get, Param, ParseIntPipe, Delete, Patch } from 
 import { ProfileBusinessService } from './profile-business.service';
 import { CreateProfileBusinessDto } from './dto/create-profile-business.dto';
 import { UpdateProfileBusinessDto } from './dto/update-profile-business.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('profile-businesses')
 @Controller('profile-businesses')
 export class ProfileBusinessController {
   constructor(private readonly profileBusinessService: ProfileBusinessService) { }

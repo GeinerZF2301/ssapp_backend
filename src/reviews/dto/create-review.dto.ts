@@ -2,10 +2,9 @@ import { IsNotEmpty, IsInt, Min, Max, MinLength, IsString } from 'class-validato
 import { Transform } from 'class-transformer';
 
 export class CreateReviewDto {
-  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
-  @IsNotEmpty({ message: "La descripción es obligatoria" })
-  @IsString({ message: "La descripción debe ser escrita en formato de texto" })
-  @MinLength(3, { message: "La descripción no debe tener menos de 3 caracteres" })
+  @IsString({ message: "La ubicación del evento debe estar en formato de texto" })
+  @MinLength(3, { message: "La ubicación del evento no debe tener menos de 3 caracteres" })
+  @IsNotEmpty({ message: "La ubicación del evento es obligatoria" })
   description: string;
 
   @IsNotEmpty({ message: "La calificación es obligatoria" })

@@ -34,9 +34,9 @@ export class CreateRecruitmentDto {
   @IsNotEmpty({ message: "El estado de pago es obligatorio" })
   payment_status: string;
 
-  @IsNotEmpty({ message: "El ID del músico es obligatorio" })
-  musicianId: number;
+ // @IsNotEmpty({ message: "El ID del músico es obligatorio" })
+ // musicianId: number;
   
-  @IsNotEmpty({ message: "El ID del contratista es obligatorio" })
-  contractorId: number;
+ // @IsNotEmpty({ message: "El ID del contratista es obligatorio" })
+ // contractorId: number;
 }

@@ -13,8 +13,9 @@
     @IsString({ message: 'El nombre del negocio debe ser escrita en formato texto' })
     business_name: string;
 
-    @IsInt({ message: 'El número de teléfono debe ser  números entero' })
-    phone_number: number;
+    //@IsInt({ message: 'El número de teléfono debe ser  números entero' })
+    @IsString({ message: 'El nombre del negocio debe ser escrita en formato texto' })
+    phone_number: string;
 
     @IsString({ message: 'El estado debe ser escrita en formato texto' })
     state: string;

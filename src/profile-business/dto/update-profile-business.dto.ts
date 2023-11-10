@@ -18,8 +18,8 @@ export class UpdateProfileBusinessDto {
   business_name?: string;
 
   @IsOptional()
-  @IsInt({ message: 'El número de teléfono debe ser un número entero' })
-  phone_number?: number;
+  @IsString({ message: 'El nombre del negocio debe estar en formato de texto' })
+  phone_number?: string;
 
   @IsOptional()
   @IsString({ message: 'El estado debe estar en formato de texto' })

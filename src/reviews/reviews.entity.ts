@@ -1,5 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany,
-    JoinTable } from 'typeorm';
+import {
+  Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany,
+  JoinTable
+} from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { Recruitment } from 'src/recruitments/recruitments.entity';
 
@@ -16,12 +18,12 @@ export class Review {
 
 
   @ManyToOne(() => User)
-  musician: User; 
+  musician: User;
 
   @ManyToOne(() => User)
   contractor: User;
 
   @ManyToOne(() => Recruitment)
-  recruitment: Recruitment; 
+  recruitment: Recruitment;
 
 }

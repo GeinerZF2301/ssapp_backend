@@ -11,6 +11,14 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { RecruitmentsModule } from './recruitments/recruitments.module';
 import { CategoryBusinessModule } from './category-business/category-business.module';
 import { ProfileBusinessModule } from './profile-business/profile-business.module';
+import { CategorySkillsModule } from './category-skills/category-skills.module';
+import { PostHiringsModule } from './post-hirings/post-hirings.module';
+import { AplicantsModule } from './aplicants/applicants.module';
+import { ProfileModule } from './profile/profile.module';
+import { PostSkillsModule} from './post-skills/post-skills.module';
+
+
+
 
 
 @Module({
@@ -37,6 +45,12 @@ import { ProfileBusinessModule } from './profile-business/profile-business.modul
     RecruitmentsModule,
     CategoryBusinessModule,
     ProfileBusinessModule,
+    CategorySkillsModule,
+    PostHiringsModule,
+    AplicantsModule,
+    ProfileModule,
+    PostHiringsModule,
+    PostSkillsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -14,7 +14,7 @@ export class ProfileBusinessService {
 
   async createProfileBusiness(profileBusinessDto: CreateProfileBusinessDto) {
     
-    const selectedDays = profileBusinessDto.days_of_the_week.join(', ');
+    const selectedDays = profileBusinessDto.days_of_the_week.join(',');
     
     
     const newProfileBusiness = new ProfileBusiness();

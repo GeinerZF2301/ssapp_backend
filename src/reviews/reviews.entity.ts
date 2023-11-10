@@ -13,13 +13,12 @@ export class Review {
 
   @Column({ type: 'varchar' })
   description: string;
-
-
-  @ManyToOne(() => User)
-  musician: User; 
-
-  @ManyToOne(() => User)
-  contractor: User;
+  
+  @Column({type: 'integer'})
+  musicianId: number
+  
+  @Column({type: 'integer'})
+  contractorId: number
 
   @ManyToOne(() => Recruitment)
   recruitment: Recruitment; 

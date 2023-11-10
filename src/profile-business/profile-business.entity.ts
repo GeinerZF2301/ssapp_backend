@@ -70,7 +70,7 @@ import {
     instagram: string;
   
     @ManyToOne(() => CategoryBusiness)
-    @JoinColumn({ name: 'categoryId' })
+    @JoinColumn({ name: 'categoryBusinessId' })
     category: CategoryBusiness;
   
     @ManyToOne(() => User)

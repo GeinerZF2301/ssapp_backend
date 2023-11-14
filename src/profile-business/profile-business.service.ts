@@ -34,7 +34,6 @@ export class ProfileBusinessService {
     newProfileBusiness.street = profileBusinessDto.street;
     newProfileBusiness.address = profileBusinessDto.address;
     newProfileBusiness.days_of_the_week = selectedDays; 
-    
     newProfileBusiness.openingTime = profileBusinessDto.openingTime;
     newProfileBusiness.closingTime = profileBusinessDto.closingTime;
     newProfileBusiness.avatar_route = profileBusinessDto.avatar_route;

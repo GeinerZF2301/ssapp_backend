@@ -25,8 +25,8 @@ import {
     @Column({ type: 'varchar' })
     business_name: string;
   
-    @Column({ type: 'int' })
-    phone_number: number;
+    @Column({ type: 'varchar' })
+    phone_number: string;
   
     @Column({ type: 'varchar', length: 40 })
     state: string;

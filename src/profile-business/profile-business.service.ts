@@ -4,12 +4,18 @@ import { Repository } from 'typeorm';
 import { ProfileBusiness } from './profile-business.entity';
 import { CreateProfileBusinessDto } from './dto/create-profile-business.dto';
 import { UpdateProfileBusinessDto } from './dto/update-profile-business.dto';
+import { CategoryBusiness } from 'src/category-business/category-business.entity';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class ProfileBusinessService {
   constructor(
     @InjectRepository(ProfileBusiness)
     private profileBusinessRepository: Repository<ProfileBusiness>,
+    @InjectRepository(CategoryBusiness)
+    private categoryBusinessRepository: Repository<CategoryBusiness>,
+   // @InjectRepository(User)
+   // private users: Repository<User>,
   ) {}
 
   async createProfileBusiness(profileBusinessDto: CreateProfileBusinessDto) {
@@ -35,7 +41,11 @@ export class ProfileBusinessService {
     newProfileBusiness.about = profileBusinessDto.about;
     newProfileBusiness.facebook = profileBusinessDto.facebook;
     newProfileBusiness.instagram = profileBusinessDto.instagram;
-    
+    newProfileBusiness.category = await this.categoryBusinessRepository.findOne({
+      where: {
+        id: profileBusinessDto.categoryId,
+    }
+  });
    
     await this.profileBusinessRepository.save(newProfileBusiness);
     
@@ -43,20 +53,25 @@ export class ProfileBusinessService {
   }
   
   async getProfileBusinesses() {
-    return this.profileBusinessRepository.find();
+    return this.profileBusinessRepository.find({ relations: ['category','user'] });
   }
+  
 
   async getProfileBusiness(id: number) {
     const profileBusinessFound = await this.profileBusinessRepository.findOne({
       where: {
         id,
       },
+      relations: ['category','user'], // Carga la relación con la categoría
     });
+  
     if (!profileBusinessFound) {
       throw new HttpException('Perfil de negocio no encontrado', HttpStatus.NOT_FOUND);
     }
+  
     return profileBusinessFound;
   }
+  
 
   async deleteProfileBusiness(id: number) {
     const result = await this.profileBusinessRepository.delete(id);

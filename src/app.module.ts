@@ -37,6 +37,7 @@ import { ProfileBusinessModule } from './profile-business/profile-business.modul
     RecruitmentsModule,
     CategoryBusinessModule,
     ProfileBusinessModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],

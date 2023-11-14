@@ -1,4 +1,4 @@
-  import { IsString, IsInt, IsOptional, IsArray, ArrayMinSize } from 'class-validator';
+  import { IsString, IsInt, IsOptional, IsArray, ArrayMinSize,IsNotEmpty } from 'class-validator';
 
   export class CreateProfileBusinessDto {
     @IsString({ message: 'El nombre del propietario debe ser escrita en formato texto' })
@@ -59,8 +59,8 @@
     @IsString({ message: 'El enlace de Instagram debe ser una cadena de caracteres' })
     instagram?: string;
 
-    // @IsInt({ message: 'El ID de categoría debe ser un número entero' })
-    // categoryId: number;
+    @IsNotEmpty({ message: "El nombre es obligatorio" })
+  categoryId: number;
 
     // @IsInt({ message: 'El ID de usuario debe ser un número entero' })
     // userId: number;

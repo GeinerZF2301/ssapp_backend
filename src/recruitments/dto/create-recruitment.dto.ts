@@ -32,5 +32,11 @@ export class CreateRecruitmentDto {
   @IsString({ message: "El estado de pago debe estar en formato de texto" })
   @IsIn(["Pendiente", "Cancelado", "En progreso"], { message: "Estado de pago no válido" })
   @IsNotEmpty({ message: "El estado de pago es obligatorio" })
-  payment_status: string;an-Cr
+  payment_status: string;
+
+  // @IsNotEmpty({ message: "El ID del músico es obligatorio" })
+  // musicianId: number;
+  
+  // @IsNotEmpty({ message: "El ID del contratista es obligatorio" })
+  // contractorId: number;
 }

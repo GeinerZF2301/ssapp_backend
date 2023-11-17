@@ -18,9 +18,6 @@ import { ProfileModule } from './profile/profile.module';
 import { PostSkillsModule} from './post-skills/post-skills.module';
 
 
-
-
-
 @Module({
   imports: [
     ConfigModule.forRoot(),

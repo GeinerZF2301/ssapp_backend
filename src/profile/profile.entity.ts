@@ -1,12 +1,13 @@
 import { User } from "src/users/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity({name: 'profiles'})
 
 export class Profile{
 
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryColumn()
+    id : uuidv4;
 
     @Column({ type: 'varchar', length: 30 })
     name: string;
@@ -35,8 +36,8 @@ export class Profile{
     @Column({ type: 'varchar' })
     address: string;
 
-    @Column({ type: 'varchar' })
-    postalCode: string;
+    @Column({ type: 'integer' })
+    postalCode: number;
 
     @Column({ type: 'varchar' })
     avatar_route: string;

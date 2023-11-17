@@ -59,9 +59,6 @@
     @IsString({ message: 'El enlace de Instagram debe ser una cadena de caracteres' })
     instagram?: string;
 
-    // @IsInt({ message: 'El ID de categoría debe ser un número entero' })
-    // categoryId: number;
-
-    // @IsInt({ message: 'El ID de usuario debe ser un número entero' })
-    // userId: number;
+    @IsInt({ message: 'El ID de usuario debe ser un número entero' })
+    userId: number;
   }

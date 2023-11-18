@@ -18,7 +18,7 @@ export class UpdateProfileDto {
 
     @IsDateString({ strict: true }, { message: "La fecha de contratación debe ser una fecha válida en formato YYYY-MM-DD" })
     @IsNotEmpty({ message: "La fecha de contratación es obligatoria" })
-    birthDate?: string;
+    birthDate?: Date;
 
     @IsInt({ message: 'El número de teléfono debe ser  números entero' })
     phone_number: number;

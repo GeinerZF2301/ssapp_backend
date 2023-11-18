@@ -8,7 +8,7 @@ import { ApplicantQueries } from "src/queries/applicants/applicant.queries";
 @Controller('applicants')
 export class ApplicantController{
     constructor(private applicantService : ApplicantService,
-        private applicantQueries : ApplicantQueries){}
+        private applicantQueriesService : ApplicantQueries){}
 
     @Post()
     createApplicant(@Body() newPostHiring: CreateApplicantDto){
@@ -21,9 +21,13 @@ export class ApplicantController{
         return this.applicantService.updateStatusApplicant(id, updateApplicant)
     }
     //Espera el id del usuario del que se quiere consultar las aplicaciones a ofertas
-    @Get(':id')
-    QueryApplicantData(@Param('id', ParseIntPipe) id: number){
-        return this.applicantQueries.getApplicantData(id);
+    @Get('user/:id')
+    QueryApplicantDataByUserId(@Param('id', ParseIntPipe) id: number){
+        return this.applicantQueriesService.getApplicantDataByUserId(id);
+    }
+    @Get('post/:postId')
+    QueryApplicantDataByPostId(@Param('postId', ParseIntPipe) postId: number){
+        return this.applicantQueriesService.getApplicantDataByPostId(postId);
     }
 
     

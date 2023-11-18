@@ -1,13 +1,13 @@
 import { User } from "src/users/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { v4 as uuidv4 } from 'uuid';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+
 
 @Entity({name: 'profiles'})
 
 export class Profile{
 
-    @PrimaryColumn()
-    id : uuidv4;
+    @PrimaryGeneratedColumn()
+    id : number ;
 
     @Column({ type: 'varchar', length: 30 })
     name: string;

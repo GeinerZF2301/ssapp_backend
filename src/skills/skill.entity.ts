@@ -25,7 +25,4 @@ export class Skill {
   @ManyToOne(() => CategorySkill)
     @JoinColumn({ name: 'categoryId' })
     category: CategorySkill;
-
-  @ManyToMany(() => PostHiring, postHiring => postHiring.skills)
-  postHirings: PostHiring[];
 }

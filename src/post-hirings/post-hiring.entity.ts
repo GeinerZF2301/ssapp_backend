@@ -15,7 +15,7 @@ export class PostHiring{
 
     @ManyToOne(() => User)
     @JoinColumn({ name: 'userId' })
-    contractorUser: User;
+    user: User;
 
     @ManyToMany(() => Skill)
     @JoinTable()

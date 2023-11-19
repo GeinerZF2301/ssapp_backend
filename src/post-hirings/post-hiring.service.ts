@@ -6,7 +6,7 @@ import { UsersService } from 'src/users/users.service';
 import { CreatePostHiringDto } from './dto/create-post-hiring.dto';
 import { UpdatePostHiringDto } from './dto/update-post-hiring.dto';
 
-import { Skill } from 'src/skills/skill.entity';
+
 
 @Injectable()
 export class PostHiringsService {
@@ -26,7 +26,7 @@ export class PostHiringsService {
             const newPost = this.postHiringRepository.create({
                 title: postHiring.title,
                 description: postHiring.description,
-                contractorUser: contractorUser,
+                user: contractorUser,
             });
             await this.postHiringRepository.save(newPost);
             return {
@@ -37,7 +37,12 @@ export class PostHiringsService {
         }
     }
     getPostHirings() {
-        return this.postHiringRepository.find();
+        return this.postHiringRepository.find({
+            relations:{
+                skills: true,
+                user: true
+            },
+        });
     }
 
     async getPostHiringById(id: number){
@@ -52,26 +57,38 @@ export class PostHiringsService {
         return postFound;
     }
     async updatePostHiring(id: number, postHiring: UpdatePostHiringDto){
-        const contractorUser = await this.userService.getUser(
-            postHiring.contractorUserId,
-        );
-        const postFound = await this.postHiringRepository.findOne({
-            where:{
-                id,
-            },
-        });
-        if(!postFound){
-            throw new NotFoundException("Post no encontrado")
-        }else if(!(contractorUser instanceof HttpException)){
+        try {
+            const {title, description, contractorUserId} = postHiring;
+            const contractorUser = await this.userService.getUser(
+                contractorUserId,
+            );
+            const postFound = await this.postHiringRepository.findOne({
+                where:{
+                    id,
+                },
+            });
+            if(!postFound){
+                throw new NotFoundException("Post no encontrado")
+            }
+            if(contractorUser instanceof HttpException){
+                throw contractorUser;
+            }
             postFound.title = postHiring.title,
             postFound.description = postHiring.description,
-            postFound.contractorUser = contractorUser
+            postFound.user = contractorUser
             await this.postHiringRepository.save(postFound);
+            return {
+                message: 'Post actualizado',
+                status: HttpStatus.OK
+            };
+        } catch (error) {
+            console.error(error);
+            throw new HttpException(
+                'Ha ocurrido un error al actualizar el post',
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
         }
-        return {
-            message: 'Post actualizado',
-            status: HttpStatus.OK
-        };
+       
     }
 
     async deletePostHiring(id: number){

@@ -38,7 +38,11 @@ export class SkillsService {
         throw new HttpException('Esta skill ya existe', HttpStatus.CONFLICT);
     }
     getSkills() {
-        return this.skillRepository.find();
+        return this.skillRepository.find({
+            relations:{
+                category: true
+            }
+        });
     }
     async getSkill(id: number) {
         const skillFound = await this.skillRepository.findOne({

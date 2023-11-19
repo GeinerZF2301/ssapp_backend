@@ -35,7 +35,7 @@ export class CategorySkillService{
         }
     }
     getCategories(){
-        return this.categorySkillRepository.find()
+        return this.categorySkillRepository.find();
     }
     async getCategory(id: number){
         const categoryFound = await this.categorySkillRepository.findOne({

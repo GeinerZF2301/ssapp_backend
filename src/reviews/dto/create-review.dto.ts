@@ -13,4 +13,12 @@ export class CreateReviewDto {
   @Min(1, { message: "La calificación debe ser al menos 1" })
   @Max(5, { message: "La calificación debe ser como máximo 5" })
   review: number;
+
+  @IsNotEmpty({ message: "La calificación es obligatoria" })
+  contractorUserId: number;
+
+  @IsNotEmpty({ message: "La calificación es obligatoria" })
+  musicianId: number;
+
+
 }

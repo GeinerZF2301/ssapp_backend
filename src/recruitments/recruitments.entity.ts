@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { User } from 'src/users/user.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity({ name: 'recruitments' })
 
@@ -30,11 +31,11 @@ export class Recruitment {
   @Column({ type: 'date' })
   payment_date: Date;
 
-  @Column({type: 'integer'})
-  musicianId: number
-  
-  @Column({type: 'integer'})
-  contractorId: number
+  @ManyToOne(() => User)
+  musicianId: User; 
+
+  @ManyToOne(() => User)
+  contractorId: User;
   
 
 }

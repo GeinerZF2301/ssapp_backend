@@ -5,8 +5,7 @@ import { Repository } from "typeorm/repository/Repository";
 import { CreateApplicantDto } from "./dto/create-applicant.dto";
 import { PostHiringsService } from "src/post-hirings/post-hiring.service";
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { StatusAplicant } from "./helpers/statusAplicant";
-
+import { StatusAplicant } from "src/helpers/statusAplicant";
 import { UpdateApplicantDto } from "./dto/update-applicant.dto";
 
 
@@ -40,6 +39,7 @@ export class ApplicantService {
             throw new HttpException("Ha ocurrido un error", HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
+
 
     async updateStatusApplicant(id: number, updateApplicant: UpdateApplicantDto){
         const applicantFound = await this.applicantRepository.findOne({

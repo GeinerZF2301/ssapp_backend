@@ -1,5 +1,6 @@
+import { Skill } from "src/skills/skill.entity";
 import { User } from "src/users/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity({name: 'profiles'})
@@ -63,4 +64,8 @@ export class Profile{
     @ManyToOne(() => User)
     @JoinColumn({ name: 'userId' })
     user: User;
+
+    @ManyToMany(() => Skill)
+    @JoinTable()
+    skills: Skill[];
 }

@@ -16,6 +16,7 @@ import { PostHiringsModule } from './post-hirings/post-hirings.module';
 import { AplicantsModule } from './aplicants/applicants.module';
 import { ProfileModule } from './profile/profile.module';
 import { PostSkillsModule} from './post-skills/post-skills.module';
+import { ProfileSkillsModule } from './profile-skills/profile-skills.module';
 
 
 @Module({
@@ -48,6 +49,7 @@ import { PostSkillsModule} from './post-skills/post-skills.module';
     ProfileModule,
     PostHiringsModule,
     PostSkillsModule,
+    ProfileSkillsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

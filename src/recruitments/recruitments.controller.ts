@@ -36,6 +36,10 @@ export class RecruitmentsController {
   }
   @Get('/musician/:id')
   getRecruitmentByMusicianId(@Param('id', ParseIntPipe) id: number){
-    return this.recruitmentQueryService.getRecruitmentByMusician(id);
+    return this.recruitmentQueryService.getRecruitmentByMusicianId(id);
+  }
+  @Get('/contractor/:id')
+  getRecruitmentByContractorId(@Param('id', ParseIntPipe) id: number){
+    return this.recruitmentQueryService.getRecruitmentByContractorId(id);
   }
 }

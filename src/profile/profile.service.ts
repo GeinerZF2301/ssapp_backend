@@ -10,7 +10,6 @@ import { Repository } from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
-import { access } from 'fs';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
@@ -88,6 +87,7 @@ export class ProfileService {
         return this.profileRepository.find({
             relations: {
                 user: true,
+                skills: true,
             },
         });
     }
@@ -96,7 +96,7 @@ export class ProfileService {
         try {
             const profileFound = await this.profileRepository.findOne({
                 where: { id },
-                relations: ['user'],
+                relations: ['user' , 'skills'],
             });
             if (!profileFound) {
                 throw new HttpException(

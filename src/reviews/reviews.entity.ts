@@ -17,11 +17,20 @@ export class Review {
   description: string;
 
 
-  @ManyToOne(() => User)
-  musician: User;
 
-  @ManyToOne(() => User)
-  contractor: User;
+//   @ManyToOne(() => User)
+//   musician: User;
+
+//   @ManyToOne(() => User)
+//   contractor: User;
+// =======
+  
+  @Column({type: 'integer'})
+  musicianId: number
+  
+  @Column({type: 'integer'})
+  contractorId: number
+
 
   @ManyToOne(() => Recruitment)
   recruitment: Recruitment;

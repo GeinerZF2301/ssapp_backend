@@ -60,9 +60,14 @@
     @IsString({ message: 'El enlace de Instagram debe ser una cadena de caracteres' })
     instagram?: string;
 
+
     @IsNotEmpty({ message: "El nombre es obligatorio" })
   categoryId: number;
 
     // @IsInt({ message: 'El ID de usuario debe ser un número entero' })
     // userId: number;
+
+    @IsInt({ message: 'El ID de usuario debe ser un número entero' })
+    userId: number;
+
   }

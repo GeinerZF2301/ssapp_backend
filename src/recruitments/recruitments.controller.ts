@@ -2,12 +2,18 @@ import { Controller, Post, Body, Get, Param, ParseIntPipe, Delete, Patch } from 
 import { RecruitmentsService } from './recruitments.service';
 import { CreateRecruitmentDto } from './dto/create-recruitment.dto.js'; 
 import { UpdateRecruitmentDto } from './dto/update-recruitment.dto.js'; 
+
 import { ApiTags } from '@nestjs/swagger';
+
+import { RecruitmentQueries } from '../queries/recruitments/recruitmentsUsers';
+
 
 @ApiTags('recruitments')
 @Controller('recruitments')
 export class RecruitmentsController {
-  constructor(private readonly recruitmentService: RecruitmentsService) { }
+  constructor(private readonly recruitmentService: RecruitmentsService,
+      private readonly recruitmentQueryService: RecruitmentQueries  
+    ) { }
 
   @Get()
   getRecruitments() {
@@ -32,5 +38,9 @@ export class RecruitmentsController {
   @Patch(':id')
   updateRecruitment(@Param('id', ParseIntPipe) id: number, @Body() recruitment: UpdateRecruitmentDto ){
     return this.recruitmentService.updateRecruitment(id, recruitment)
+  }
+  @Get('/musician/:id')
+  getRecruitmentByMusicianId(@Param('id', ParseIntPipe) id: number){
+    return this.recruitmentQueryService.getRecruitmentByMusician(id);
   }
 }

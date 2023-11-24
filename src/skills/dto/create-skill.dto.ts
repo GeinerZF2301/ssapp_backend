@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MinLength } from 'class-validator'
+import { IsNotEmpty, IsNumber, IsString, MinLength } from 'class-validator'
 import { Transform } from 'class-transformer'
 export class CreateSkillDto{
     @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
@@ -6,4 +6,9 @@ export class CreateSkillDto{
     @IsString({message: "La skill debe ser escrita en formato de texto"})
     @MinLength(3, {message: "La skill no debe tener menos de 3 caracteres"})
     skill: string
+
+    @IsNotEmpty({message:"La categoria es obligatoria"})
+    @IsNumber()
+    categoryId: number
+    
 }

@@ -5,9 +5,9 @@ export class UpdateSkillDto{
     @IsNotEmpty({message:"La skill es obligatoria"})
     @IsString({message: "La skill debe ser escrita en formato de texto"})
     @MinLength(3, {message: "La skill no debe tener menos de 3 caracteres"})
-    skill? : string
+    name? : string
 
     @IsNotEmpty({message:"La skill es obligatoria"})
     @IsNumber()
-    categoryId: number
+    category: number
 }

@@ -15,7 +15,7 @@ export class Skill {
   id: number;
 
   @Column({ unique: true })
-  skill: string;
+  name: string;
 
   @ManyToOne(() => CategorySkill)
     @JoinColumn({ name: 'categoryId' })

@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException, ParseIntPipe } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PostHiring } from './post-hiring.entity';
 import { In, Repository } from 'typeorm';
@@ -17,6 +17,7 @@ export class PostHiringsService {
     ) { }
 
     async createPostHiring(postHiring: CreatePostHiringDto) {
+
         const contractorUser = await this.userService.getUser(
             postHiring.contractorUserId,
         );
@@ -26,6 +27,9 @@ export class PostHiringsService {
             const newPost = this.postHiringRepository.create({
                 title: postHiring.title,
                 description: postHiring.description,
+                date: postHiring.date,
+                type_event: postHiring.type_event,
+                monto: postHiring.monto,
                 user: contractorUser,
             });
             await this.postHiringRepository.save(newPost);
@@ -75,6 +79,9 @@ export class PostHiringsService {
             }
             postFound.title = postHiring.title,
             postFound.description = postHiring.description,
+            postFound.date = postHiring.date,
+            postFound.type_event = postHiring.type_event,
+            postFound.monto = postHiring.monto,
             postFound.user = contractorUser
             await this.postHiringRepository.save(postFound);
             return {

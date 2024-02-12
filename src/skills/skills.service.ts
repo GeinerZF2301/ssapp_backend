@@ -20,16 +20,16 @@ export class SkillsService {
 
     async createSkill(skill: CreateSkillDto) {
         const category = await this.categorySkillService.getCategory(
-            skill.categoryId,
+            skill.category,
         );
         const skillFound = await this.skillRepository.findOne({
             where: {
-                skill: skill.skill,
+                name: skill.name,
             },
         });
         if (!skillFound && category) {
             const newSkill = this.skillRepository.create({
-                skill: skill.skill,
+                name: skill.name,
                 category: category,
             });
             await this.skillRepository.save(newSkill);
@@ -66,7 +66,7 @@ export class SkillsService {
 
     async updateSkill(id: number, skill: UpdateSkillDto) {
         const category = await this.categorySkillService.getCategory(
-            skill.categoryId,
+            skill.category,
         );
         const skillFound = await this.skillRepository.findOne({
             where: {
@@ -76,7 +76,7 @@ export class SkillsService {
         if (!skillFound && !category) {
             throw new NotFoundException('Habilidad no encontrada');
         }
-        skillFound.skill = skill.skill;
+        skillFound.name = skill.name;
         skillFound.category = category;
         await this.skillRepository.save(skillFound);
         return {

@@ -6,6 +6,8 @@ export class UpdateCategorySkillDto {
   @IsNotEmpty({ message: "El nombre es obligatorio" })
   name?: string;
 
+  createdAt?: any
+
 
   
 }

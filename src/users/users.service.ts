@@ -76,8 +76,8 @@ export class UsersService {
     });
     if (!userFoundByEmail) {
       throw new HttpException(
-        'Correo electrónico incorrecto. Por favor, inténtalo de nuevo',
-        HttpStatus.NOT_FOUND,
+        'Correo electrónico incorrecto o no encontrado. Por favor, inténtalo de nuevo',
+        HttpStatus.BAD_REQUEST,
       );
     }
     const isPasswordValid = await this.verifyPassword(

@@ -31,7 +31,7 @@ export class CategorySkillService{
             
         } catch (error) {
             console.error(error);
-            throw new HttpException('Ocurrió un error durante el registro', HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new HttpException('Ocurrió un error durante el registro' + error.message, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     getCategories(){
@@ -42,6 +42,7 @@ export class CategorySkillService{
             where:{
                 id,
             },
+            select: ['id', 'name'],
         });
         if(!categoryFound){
             throw new HttpException("Categoria no encontrada",HttpStatus.NOT_FOUND)

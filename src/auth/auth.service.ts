@@ -45,8 +45,8 @@ export class AuthService {
       }
       const userCheckConfirm =
       await this.userService.checkUserCredentials(loginDto);
-      const { id, username } = userCheckConfirm.userFoundByEmail;
-      const payload = { sub: id, username: username };
+      const { id, username, email } = userCheckConfirm.userFoundByEmail;
+      const payload = { id: id, username: username, email: email };
       return {
         access_token: await this.jwtService.signAsync(payload),
       };

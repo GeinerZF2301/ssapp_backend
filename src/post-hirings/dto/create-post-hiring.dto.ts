@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsDateString, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Column, Double } from "typeorm";
 
 export class CreatePostHiringDto{
     @IsNotEmpty({ message: "El nombre es obligatorio" })
@@ -8,6 +9,18 @@ export class CreatePostHiringDto{
     @IsNotEmpty({ message: "El nombre es obligatorio" })
     @IsString({ message: 'La descripcion de la publicacion es obligatoria' })
     description: string;
+
+
+    @IsDateString({ strict: true }, { message: "La fecha de contratación debe ser una fecha válida en formato YYYY-MM-DD" })
+    @IsNotEmpty({ message: "La fecha de la posible contratacion es obligatoria" })
+    date: Date;
+
+    @IsNotEmpty({ message: "El nombre es obligatorio" })
+    @IsString({ message: 'El titulo de la publicacion es obligatorio' })
+    type_event: string;
+
+    @IsNumber()
+    monto: number
 
     @IsNotEmpty({ message: "El Id del usuario creador de la publicacion es obligatoria" })
     @IsNumber()
